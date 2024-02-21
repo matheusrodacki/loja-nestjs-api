@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { UsuarioEntity } from 'src/entities/usuario.entity';
 
 @Injectable()
 export class UsuarioRepository {
-  private usuarios = [];
+  private usuarios: Array<UsuarioEntity> = [];
 
-  async salvar(usuario) {
+  async salvar(usuario: UsuarioEntity): Promise<void> {
     this.usuarios.push(usuario);
   }
-  async listar() {
+  async listar(): Promise<Array<UsuarioEntity>> {
     return this.usuarios;
   }
   async existeComEmail(email: string): Promise<boolean> {
