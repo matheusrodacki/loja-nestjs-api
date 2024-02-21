@@ -5,6 +5,7 @@ import {
   IsNumber,
   IsPositive,
   IsString,
+  IsUUID,
   IsUrl,
   MaxLength,
   Min,
@@ -14,6 +15,9 @@ import {
 import { Type } from 'class-transformer';
 
 export class CaracteristicaProdutoDTO {
+  @IsUUID(undefined, { message: 'ID de usuário inválido' })
+  usuarioId: string;
+
   @IsString()
   @IsNotEmpty()
   nome: string;
