@@ -8,7 +8,13 @@ export class UsuarioRepository {
     this.usuarios.push(usuario);
   }
   async listar() {
-    console.log(this.usuarios);
     return this.usuarios;
+  }
+  async existeComEmail(email: string): Promise<boolean> {
+    const possivelUsuario = this.usuarios.find(
+      (usuario) => usuario.email === email,
+    );
+
+    return possivelUsuario !== undefined;
   }
 }
