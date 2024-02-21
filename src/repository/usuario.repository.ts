@@ -12,6 +12,7 @@ export class UsuarioRepository {
   async listar(): Promise<Array<UsuarioEntity>> {
     return this.usuarios;
   }
+
   async atualizar(
     id: string,
     dadosDeAtualizacao: Partial<UsuarioEntity>,
@@ -26,6 +27,7 @@ export class UsuarioRepository {
     });
     return possivelUsuario;
   }
+
   async deletar(id: string): Promise<UsuarioEntity> {
     const usuario = this.buscarUsuario(id);
     if (usuario) {
@@ -36,7 +38,7 @@ export class UsuarioRepository {
     return usuario;
   }
 
-  private buscarUsuario(id) {
+  private buscarUsuario(id: string): UsuarioEntity {
     const possivelUsuario = this.usuarios.find(
       (usuarioSalvo) => usuarioSalvo.id === id,
     );

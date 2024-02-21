@@ -65,6 +65,7 @@ export class UsuarioController {
       };
     }
   }
+
   @Delete('/:id')
   async deletaUsuario(@Param('id') id: string) {
     try {

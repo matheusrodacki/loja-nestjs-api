@@ -1,76 +1,64 @@
 import {
   IsArray,
   IsDateString,
-  IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsPositive,
   IsString,
   IsUUID,
-  IsUrl,
   MaxLength,
   Min,
   ValidateNested,
 } from 'class-validator';
 
 import { Type } from 'class-transformer';
+import { CaracteristicaProdutoDTO, ImagemProdutoDTO } from './CriaProduto.dto';
 
-export class CaracteristicaProdutoDTO {
-  @IsString()
-  @IsNotEmpty()
-  nome: string;
-
-  @IsString()
-  @IsNotEmpty()
-  descricao: string;
-}
-
-export class ImagemProdutoDTO {
-  @IsUrl()
-  url: string;
-
-  @IsString()
-  @IsNotEmpty()
-  descricao: string;
-}
-
-export class CriaProdutoDTO {
+export class AtualizaProdutoDTO {
   @IsUUID(undefined, { message: 'ID de usuário inválido' })
+  @IsOptional()
   usuarioId: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   nome: string;
 
   @IsNumber({ maxDecimalPlaces: 2, allowNaN: false, allowInfinity: false })
   @IsPositive()
+  @IsOptional()
   valor: number;
 
   @IsNumber()
   @Min(0)
+  @IsOptional()
   quantidadeDisponivel: number;
 
   @IsString()
-  @IsNotEmpty()
   @MaxLength(1000)
+  @IsOptional()
   descricao: string;
 
   @IsArray()
   @ValidateNested()
   @Type(() => CaracteristicaProdutoDTO)
+  @IsOptional()
   caracteristicas: CaracteristicaProdutoDTO[];
 
   @IsArray()
   @ValidateNested()
   @Type(() => ImagemProdutoDTO)
+  @IsOptional()
   imagens: ImagemProdutoDTO[];
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   categoria: string;
 
   @IsDateString()
+  @IsOptional()
   dataCriacao: Date;
 
   @IsDateString()
+  @IsOptional()
   dataAtualizacao: Date;
 }
