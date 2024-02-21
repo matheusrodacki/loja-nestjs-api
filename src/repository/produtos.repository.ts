@@ -29,6 +29,16 @@ export class ProdutosRepository {
     return produto;
   }
 
+  async deletar(id: string): Promise<ProdutoEntity> {
+    const produto = this.buscarProduto(id);
+    if (produto) {
+      this.produtos = this.produtos.filter(
+        (produtoSalvo) => produtoSalvo.id !== id,
+      );
+    }
+    return produto;
+  }
+
   private buscarProduto(id: string): ProdutoEntity {
     const possivelProduto = this.produtos.find((produto) => produto.id === id);
 
