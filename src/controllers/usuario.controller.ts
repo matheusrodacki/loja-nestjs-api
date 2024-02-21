@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { CriaUsuarioDTO } from 'src/dto/CriaUsuario.dto';
 import { UsuarioRepository } from 'src/repository/usuario.repository';
 
 @Controller('/usuarios')
@@ -11,7 +12,7 @@ export class UsuarioController {
   }
 
   @Post()
-  async criaUsuario(@Body() payloadUsuario) {
+  async criaUsuario(@Body() payloadUsuario: CriaUsuarioDTO) {
     this.usuarioRepository.salvar(payloadUsuario);
     return payloadUsuario;
   }
