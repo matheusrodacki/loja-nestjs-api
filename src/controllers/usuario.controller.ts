@@ -5,14 +5,14 @@ import { UsuarioRepository } from 'src/repository/usuario.repository';
 export class UsuarioController {
   constructor(private usuarioRepository: UsuarioRepository) {}
 
+  @Get()
+  async listaUsuarios() {
+    return this.usuarioRepository.listar();
+  }
+
   @Post()
   async criaUsuario(@Body() payloadUsuario) {
     this.usuarioRepository.salvar(payloadUsuario);
     return payloadUsuario;
-  }
-
-  @Get()
-  async listaUsuarios() {
-    return this.usuarioRepository.listar();
   }
 }
